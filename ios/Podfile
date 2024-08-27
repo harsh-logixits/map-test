@@ -28,7 +28,15 @@ target 'Map' do
     # Pods for testing
   end
 
+  pre_install do |installer|
+    $RNMapboxMaps.pre_install(installer)
+  end
+
   post_install do |installer|
+    # https://rnmapbox.github.io/docs/install?configure-module=ios
+    $RNMapboxMaps.post_install(installer)
+    # https://github.com/maplibre/maplibre-react-native/blob/main/ios/install.md
+    $RCTMLN.post_install(installer)
     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
